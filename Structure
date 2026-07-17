@@ -1,0 +1,7 @@
+local-llm/
+├── backend/
+│   └── main.py
+├── frontend/
+│   └── index.html
+├── requirements.txt
+└── README.md
