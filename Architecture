@@ -1,0 +1,7 @@
+[HTML Chat UI]
+        ↓
+[FastAPI Backend]
+        ↓
+[Ollama API]
+        ↓
+[Local LLM (Llama 3, Mistral, etc.)]
