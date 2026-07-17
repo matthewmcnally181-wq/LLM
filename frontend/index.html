@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Local LLM</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        #chat { max-width: 600px; margin: auto; }
+        input, button { padding: 10px; }
+    </style>
+</head>
+<body>
+    <div id="chat">
+        <h2>Local AI Chat</h2>
+        <input id="input" placeholder="Type message..." />
+        <button onclick="send()">Send</button>
+        <div id="messages"></div>
+    </div>
+
+    <script>
+        async function send() {
+            const input = document.getElementById("input").value;
+
+            const res = await fetch("http://localhost:8000/chat", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({message: input})
+            });
+
+            const data = await res.json();
+
+            document.getElementById("messages").innerHTML +=
+                "<p><b>You:</b> " + input + "</p>" +
+                "<p><b>AI:</b> " + data.response + "</p>";
+        }
+    </script>
+</body>
+</html>
