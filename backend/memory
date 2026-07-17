@@ -1,0 +1,18 @@
+history = []
+
+@app.post("/chat")
+def chat(prompt: Prompt):
+    history.append(prompt.message)
+
+    full_prompt = "\n".join(history)
+
+    response = requests.post(OLLAMA_URL, json={
+        "model": "llama3",
+        "prompt": full_prompt,
+        "stream": False
+    })
+
+    reply = response.json()["response"]
+    history.append(reply)
+
+    return {"response": reply}
